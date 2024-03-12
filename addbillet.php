@@ -1,8 +1,9 @@
 
 <?php
-    
-    require_once 'navbar.php';
+
     require_once 'config.php';
+    require_once 'navbar.php';
+   
     //AFFICHAGE DES ERREURS
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -30,9 +31,11 @@
         $stmt->close();
 
     } else{
-        echo "Tous les champs doivent être remplis";
+        echo "";
     }
+    
 ?>
+
 
 
 
@@ -166,7 +169,6 @@
 }
 
 
-
 </style>
 <body>
 <div class="billet">
@@ -176,35 +178,56 @@
         <div>
         <form  class="form"  action="" method="post">
             <h1>Réservez un Billet</h1>
-            <label for="direction">Direction:</label>
-                <input type="text" name="direction"  >
+          <label for="direction">Direction:</label>
+                <input list="directions" type="text" id="direction" name="direction"  >
+                    <datalist id="directions">
+                        <option value="Aller simple"></option>
+                        <option value="Aller-retour"></option>
+                    </datalist>
+
+            <label for="trajet">Trajet:</label>
+                <input list="trajets" type="text" id ="trajet" name="trajet">
+                    <datalist id="trajets">
+                        <option value="1.Dakar-Paris"></option>
+                        <option value="2.Dakar-Guinnée"></option>
+                        <option value="3.Dakar-Maroc"></option>
+                        <option value="4.Dakar-Dubai"></option>
+                        <option value="5.Dakar-Canada"></option>
+                        <option value="6.Dakar-A.Sawdiya"></option>
+                        <option value="7.Dakar-Belgique"></option>
+                        <option value="8.Dakar-Nangandougou"></option>
+                    </datalist>
+
+            <label for="horaire">Horaire:</label>
+                <input list="horaires" type="time" id="horaire" name="horaire">
+                    <datalist id="horaires">
+                        <option value="08:00"></option>
+                        <option value="12:00"></option>
+                        <option value="16:00"></option>
+                        <option value="20:00"></option>
+                        <option value="00:00"></option>
+                    </datalist>
+
+            <label for="prix">Prix(cfa):</label>
+                <input list="prixoptions" id="prix" name="prix">
+                    <datalist id ="prixoptions">
+                        <option value="1) 900 000cfa"></option>
+                        <option value="2) 150 000"></option>
+                        <option value="3) 250 000"></option>
+                        <option value="4) 500 000"></option>
+                        <option value="5) 1 000 000"></option>
+                        <option value="6) 300 000"></option>
+                        <option value="7) 200 000"></option>
+                        <option value="8) 5000"></option>
+                    </datalist>
 
 
+            <label for="status_billet">Status_billet:</label>
+                <input list="status" type="text" name="status_billet">
+                     <datalist id="status">
+                        <option value="Disponible"></option>
+                    </datalist>
 
-
-                <label for="trajet">Trajet:</label>
-                <input type="text" name="trajet">
-
-
-
-
-                <label for="horaire">Horaire:</label>
-                <input type="time" name="horaire">
-
-
-
-
-                <label for="prix">Prix:</label>
-                <input type="int" name="prix">
-
-
-
-
-                <label for="status_billet">Status_billet:</label>
-                <input type="text" name="status_billet">
-
-
-            
             <input type="submit" value="Réservez" name="send">
             <a class="link back" href=""> Annulez</a>
         </form>
