@@ -1,0 +1,73 @@
+<?php
+    require_once 'config.php';
+    require_once 'navbar.php';
+   
+    //AFFICHAGE DES ERREURS
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    if(isset($_POST['send'])){
+        //ON RECUPERE LES DONNÉES
+        $direction = $_POST['direction'];
+        $trajet = $_POST['trajet'];
+        $horaire = $_POST['horaire'];
+        $prix = $_POST['prix'];
+
+        //INSERSTION DES DONNÉES
+        $sql = "INSERT INTO billet (direction, trajet, horaire, prix) VALUES (?, ?, ?, ?)";
+        // Préparation de la requête
+        $stmt = $CONNEXION->prepare($sql);
+        // Liaison des paramètres
+        $stmt->bind_param("sssi", $direction, $trajet, $horaire, $prix);
+        
+        if($stmt->execute()){
+            header("location:showbillet.php");
+        }else{
+            echo "ERREUR d'insertion : " . $stmt->error;
+        }
+        // Fermeture du statement
+        $stmt->close();
+
+    } else{
+        echo "Tous les champs doivent être remplis";
+    }
+?>
+
+
+
+
+
+
+<?php
+    require_once 'config.php';
+    require_once 'navbar.php';
+   
+//AFFICHAGE DES ERREUR
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+    if(isset($_POST['send'])){
+        //ON RECUPERE LES DONNÉES
+        $direction = $_POST['direction'];
+        $trajet = $_POST['trajet'];
+        $horaire = $_POST['horaire'];
+        $prix = $_POST['prix'];
+
+        
+
+        //INSERSTION DES DONNÉES
+        $sql = "INSERT INTO billet (direction, trajet, horaire, prix) VALUES ($direction, $trajet, $horaire, $prix)";
+        
+        if(mysqli_query($CONNEXION , $sql)){
+            header("location:showbillet.php");
+        }else{
+            echo "ERREUR d'insertion : " .mysqli_error($CONNEXION);
+        }
+
+    } else{
+        echo "Tous les champs dois etre rempli";
+    }
+
+
+?>

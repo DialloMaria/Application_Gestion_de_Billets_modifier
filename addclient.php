@@ -66,8 +66,6 @@
         margin-bottom: 10px;
         font-weight: bold;
         }
-
-
         .form input[type="text"],
         .form input[type="date"] {
         width: 100%;
